@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<package>
+  <name>kaqi_bringup</name>
+  <version>0.0.0</version>
+  <description>The kaqi_bringup package</description>
+
+  <maintainer email="lizhi1205@126.com">lizhi</maintainer>
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>kaqi_description</build_depend>
+  <build_depend>kaqi_driver</build_depend>
+  <build_depend>kaqi_msgs</build_depend>
+  <build_depend>kaqi_teleop</build_depend>
+  <run_depend>kaqi_description</run_depend>
+  <run_depend>kaqi_driver</run_depend>
+  <run_depend>kaqi_msgs</run_depend>
+  <run_depend>kaqi_teleop</run_depend>
+
+
+  <!-- The export tag contains other, unspecified, tags -->
+  <export>
+    <!-- Other tools can request additional information be placed here -->
+
+  </export>
+</package>

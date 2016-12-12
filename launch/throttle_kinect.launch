@@ -1,0 +1,17 @@
+<!--
+    Throttle kinect message for record.
+-->
+<launch>
+
+    <arg name="kinect_frequence" default="5.0" />
+
+    <node pkg="topic_tools" type="throttle" name="depth_throttle"
+        args="messages head_kinect/depth_registered/image $(arg kinect_frequence) camera/depth_registered/image" output="screen"/>
+
+    <node pkg="topic_tools" type="throttle" name="rgb_throttle"
+        args="messages head_kinect/rgb/image_rect_color $(arg kinect_frequence) camera/depth_registered/image" output="screen"/>
+
+    <node pkg="topic_tools" type="throttle" name="camera_info_throttle"
+        args="messages head_kinect/depth_registered/camera_info $(arg kinect_frequence) camera/depth_registered/camera_info" output="screen"/>
+
+</launch>

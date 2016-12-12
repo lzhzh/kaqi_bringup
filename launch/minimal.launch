@@ -1,0 +1,34 @@
+<launch>
+
+    <!-- Load robot description -->
+    <include file="$(find kaqi_description)/robots/upload_kaqi.launch"/>
+
+    <!-- Nodelet manager to load base related nodes -->
+    <node pkg="nodelet" type="nodelet" name="mobile_base_nodelet_manager" args="manager"/>
+
+    <!-- Base driver -->
+    <arg name="has_gyro" value="false"/>
+    <include file="$(find kaqi_driver)/launch/robot_base.launch"/>
+
+    <!-- Joystick -->
+    <node pkg="joy" type="joy_node" name="ps3_joy" output="screen" >
+        <param name="dev" type="string" value="/dev/input/js0" />
+        <param name="deadzone" value="0.12" />
+    </node>
+
+    <!-- Sound -->
+    <node pkg="sound_play" type="soundplay_node.py" name="sound_play" output="screen"/>
+
+    <!-- Laptop battery -->
+    <node pkg="laptop_battery_monitor" type="laptop_battery.py" name="laptop_battery" output="screen" >
+    </node>
+
+    <!-- Diagnostics aggregation -->
+    <node pkg="diagnostic_aggregator" type="aggregator_node"  name="aggregator_node" >
+        <rosparam command="load" file="$(find kaqi_description)/config/kaqi_analyzers.yaml" />
+    </node>
+
+    <!-- Dashboard board -->
+    <node pkg="kaqi_driver" type="kaqi_dashboard" name="kaqi_dashboard" output="screen" />
+
+</launch>

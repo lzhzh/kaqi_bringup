@@ -1,0 +1,15 @@
+<launch>
+
+  <arg name="has_hokuyo" default="false"/>
+
+  <group if="$(arg has_hokuyo)">
+    <!-- Hokuyo node -->
+    <node name="base_laser_node" pkg="hokuyo_node" type="hokuyo_node">
+      <remap from="scan" to="base_scan"/>
+      <param name="frame_id" value="base_laser_frame"/>
+    </node>
+    <!-- Throttle scan message for visulization -->
+    <node pkg="topic_tools" type="throttle" name="base_scan_throttle" args="messages base_scan 1.0 base_scan_throttled" output="screen"/>
+  </group>
+
+</launch>
